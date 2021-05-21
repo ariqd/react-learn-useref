@@ -2,13 +2,12 @@ import { useEffect, useRef, useState } from "react";
 
 function App() {
   const [name, setName] = useState("");
-  // const [renderCount, setRenderCount] = useState(0);
-  const renderCount = useRef(1);
+  const inputRef = useRef(); // inputRef.current
 
-  useEffect(() => {
-    // setRenderCount((prevRenderCount) => prevRenderCount + 1);
-    renderCount.current = renderCount.current + 1;
-  });
+  function focus() {
+    // console.log(inputRef.current)
+    inputRef.current.focus();
+  }
 
   return (
     <>
@@ -16,11 +15,12 @@ function App() {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        ref={inputRef}
       />
 
       <div>Halo, nama saya {name}</div>
 
-      <div>Komponen ini dirender {renderCount.current} kali</div>
+      <button onClick={focus}>Focus</button>
     </>
   );
 }
